@@ -2,6 +2,7 @@ import { load } from "cheerio"
 import { MongoClient } from "mongodb";
 import dayjs from "dayjs"
 import { requst } from "./conf/api";
+import axios from "axios";
 const client = new MongoClient("mongodb://xyyd:Dandg9293@139.159.177.76:4200?directConnection=true")
 interface Ways {
     logos: string[];
@@ -19,8 +20,8 @@ interface MovieData {
 }
 
 const fetchId = async () => {
-    const res = await fetch('https://www.cikeee.com');
-    const html = await res.text();   // 将响应内容作为文本返回
+    const res = await axios.get('https://www.cikeee.com');
+    const html = await res.data;   // 将响应内容作为文本返回
     const $ = load(html);   // 使用 cheerio 解析 HTML
 
     const links = $('#movie-img-a').attr('href');
@@ -32,8 +33,8 @@ const fetchId = async () => {
 const fetchData = async (): Promise<MovieData> => {
     const link = await fetchId();
     // console.log("链接",link)
-    const result = await fetch(`https://www.cikeee.com${link}`);
-    const html = await result.text();
+    const result = await axios.get(`https://www.cikeee.com${link}`);
+    const html = await result.data;
     const $ = load(html);
 
     // 海报

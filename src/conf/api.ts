@@ -1,5 +1,5 @@
-export const BASE_URL = "http://192.168.110.28:9000"
-// export const BASE_URL = "https://api.uetab.com"
+// export const BASE_URL = "http://192.168.110.28:9000"
+export const BASE_URL = "https://api.uetab.com"
 
 
 export async function requst<T>(

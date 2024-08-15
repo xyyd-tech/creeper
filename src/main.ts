@@ -24,7 +24,7 @@ const runProcess = (path: string): Promise<"over"> => {
 const main = async () => {
     const movies = () => runProcess("./movies.ts")
     movies()
-    setInterval(movies, 1000 * 60 * 60 * 24)
+    setInterval(movies, 1000 * 60 * 60 * 6)
 }
 
 main()
